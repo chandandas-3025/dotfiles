@@ -1,0 +1,7 @@
+Copy and paste this gsgray file in /usr/bin/local
+
+Make it executable using: sudo chmod +x /usr/bin/local/gsgray
+
+Now use it whenever need to print a grayscale pdf using: gsgray input.pdf output.pdf
+
+Enjoy Black and White PDF

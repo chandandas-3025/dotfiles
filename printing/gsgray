@@ -1,0 +1,14 @@
+#!/bin/bash
+# Usage: gsgray input.pdf output.pdf
+if [ $# -ne 2 ]; then
+    echo "Usage: gsgray input.pdf output.pdf"
+    exit 1
+fi
+
+gs -sDEVICE=pdfwrite \
+   -sColorConversionStrategy=Gray \
+   -dProcessColorModel=/DeviceGray \
+   -dCompatibilityLevel=1.4 \
+   -dNOPAUSE -dBATCH \
+   -sOutputFile="$2" "$1"
+
