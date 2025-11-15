@@ -1,6 +1,6 @@
-Copy and paste this gsgray file in /usr/bin/local
+Copy and paste this gsgray file in /usr/local/bin
 
-Make it executable using: sudo chmod +x /usr/bin/local/gsgray
+Make it executable using: sudo chmod +x /usr/local/bin/gsgray
 
 Now use it whenever need to print a grayscale pdf using: gsgray input.pdf output.pdf
 
