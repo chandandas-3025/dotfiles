@@ -1,129 +1,105 @@
 # youtube-downloader.sh
 
-A high-quality YouTube video & playlist downloader script for **Linux**,
-built around **yt-dlp** and designed for maximum quality, stability, and
-simplicity.
+## Overview
 
-::: section
+`youtube-downloader.sh` is a high-quality YouTube video and playlist
+downloader script for Linux. It is built around `yt-dlp` and designed
+for maximum quality, stability, and simplicity.
+
+Tested mainly on Ubuntu (Fish & Bash), but works on all Linux
+distributions.
+
 ## Supported Features
 
--    Best video (up to **1440p**, AV1/VP9 preferred, 60fps)
--    Best audio (OPUS, multi‑track support)
--    Thumbnail + chapters + subtitles embedding
--    MKV merging
--    Playlist indexing
--    Multi‑URL downloads
--    Archive to skip already downloaded videos
+- Best video up to **1440p** (AV1/VP9 preferred, 60fps when available)
+- Best audio (OPUS, multi-track support)
+- Embedded thumbnails
+- Embedded chapters
+- Subtitles (all languages)
+- MKV merging
+- Playlist indexing
+- Multi-URL downloads
+- Archive to skip already-downloaded videos
+- Automatic resume support
+- Clean naming (e.g., `Title.mkv`, `01 - Title.mkv`)
 
-Tested mainly on **Ubuntu (Fish & Bash)**, but works on all Linux
-distros.
-:::
+## Installation
 
-------------------------------------------------------------------------
+### 1. Move the Script to `/usr/local/bin`
 
-::: section
-##  Installation
+``` bash
+sudo mv youtube-downloader.sh /usr/local/bin/
+sudo chmod +x /usr/local/bin/youtube-downloader.sh
+```
 
-###  Move the script to `/usr/local/bin`
+### 2. Install the Latest yt-dlp
 
-    sudo mv youtube-downloader.sh /usr/local/bin/
-    sudo chmod +x /usr/local/bin/youtube-downloader.sh
+Download from its official GitHub releases page. (Avoid installing from
+apt - it is outdated.)
 
-### Install the latest yt-dlp
+Verify installation:
 
-Download the latest version from its official GitHub release page.\
-*(Do NOT install from apt --- it is outdated everywhere.)*
+``` bash
+yt-dlp --version
+```
 
-**Verify :**
+### 3. Install Deno (JavaScript Runtime for Signature Decryption)
 
-    yt-dlp --version
+``` bash
+deno --version
+```
 
-###  Install Deno (for YouTube JS decryption)
+## Usage
 
-yt-dlp requires a JavaScript runtime for some YouTube formats.\
-Install the latest Deno from the official website.
+### Download a Single Video
 
-    deno --version
-:::
+``` bash
+youtube-downloader.sh "https://youtu.be/VIDEO_ID"
+```
 
-------------------------------------------------------------------------
+### Download Multiple Videos
 
-::: section
-##  Usage
+``` bash
+youtube-downloader.sh URL1 URL2 URL3
+```
 
-### ▶ Download a single video
+### Download a Playlist
 
-    youtube-downloader.sh "https://youtu.be/VIDEO_ID"
+``` bash
+youtube-downloader.sh "https://youtube.com/playlist?list=PLAYLIST_ID"
+```
 
-### ▶ Download multiple videos
+### Run Without URLs
 
-    youtube-downloader.sh URL1 URL2 URL3
+Uses the default playlist configured inside the script:
 
-### ▶ Download a playlist
+``` bash
+youtube-downloader.sh
+```
 
-    youtube-downloader.sh "https://youtube.com/playlist?list=PLAYLIST_ID"
+## Archive System
 
-### ▶ No URLs passed
+The file `downloaded.txt` prevents re-downloading already saved videos.
+Delete it if you want to reset the archive.
 
-Runs using your **default playlist** (set inside the script):
+## Troubleshooting
 
-    youtube-downloader.sh
-:::
+### Deno Not Found
 
-------------------------------------------------------------------------
+Ensure Deno is installed correctly and available in your `PATH`.
 
-::: section
-##  Features
+### JS Runtime Warning from yt-dlp
 
--   Multi‑URL support
--   Playlist auto‑numbering (`01 - Title.mkv`)
--   Clean single video naming (`Title.mkv`)
--   Best video up to 1440p
--   60fps if available
--   OPUS audio
--   Multi‑audio stream embedding
--   Subtitles (all languages)
--   Thumbnail embedding
--   Chapters embedding
--   Automatic resume support
--   Skip‑duplicate downloads via `downloaded.txt`
-:::
+Install or fix Deno - yt-dlp will automatically detect it.
 
-------------------------------------------------------------------------
+## Planned Improvements
 
-::: section
-##  Archive System
+- `--help` menu
 
-The file `downloaded.txt` prevents re‑downloading videos you\'ve already
-saved.\
-Delete it if you want to start fresh.
-:::
+- Automatic folder creation per playlist
 
-------------------------------------------------------------------------
+- Auto-update checker
 
-::: section
-##  Troubleshooting
+- Logging system
 
-###  Deno not found
-
-Ensure it is installed correctly and available in your PATH.
-
-###  JS Runtime Warning from yt-dlp
-
-Install or fix Deno --- yt-dlp uses it automatically.
-:::
-
-------------------------------------------------------------------------
-
-::: section
-##  Future Improvements (Optional)
-
--   A `--help` menu
--   Auto‑folder creation per playlist
--   Auto‑update checker
--   Log system
--   Optional 4K mode
-
-Just do it yourself --- this project is already a great kick‑ass
-starting point.
-:::
+- Optional 4K mode
